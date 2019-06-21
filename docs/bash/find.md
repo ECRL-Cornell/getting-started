@@ -1,5 +1,7 @@
 # **How to search for content in a directory**
 
+### **Everything documented here works the same in both the Linux and Mac OS operating systems.**
+
 ### The ```find``` command will search a directory or list of directories for items that match a name or pattern.
 
 | Option | Argument | Action |

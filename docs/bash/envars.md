@@ -2,7 +2,9 @@
 
 ### The Bash shell uses environment variables to persist important information from one session to another. 
 
-## Here are some foe the more useful environment variables set by the shell each time you log in.
+### **Everything documented here works the same in both the Linux and Mac OS operating systems.**
+
+## Here are some of the more useful environment variables set by the shell each time you log in.
 
 
 | Variable | Value |
@@ -11,8 +13,9 @@
 | ```PATH``` | a list of all directories in the current full path |
 | ```PWD``` | full path to the  current directory (```P```resent ```W```orking ```D```irectory) |
 | ```USER``` and ```LOGNAME``` | the login ID of the curent user (```YOU !```) |
-| ```SHELL``` | the name of the curreny
-| ```LANG``` | the language used in the shell, usually **_en_US.UTF-8_** |
+| ```SHELL``` | the name of the curreny |
+| ```LANG``` | the language used in the shell, usually |**_en_US.UTF-8_** |
+| ```CDPATH``` | not set by default, see [Using CDPATH](#using-cdpath) |
 
 ### **_```DO NOT EVER CHANGE```_ ```the values of HOME, PWD, USER, LOGNAME, SHELL or LANG !!```** The shell uses them extensively and relies on their values being correct as set by the operating system. 
 
@@ -58,5 +61,23 @@
 
 ### When setting a new value for ```PATH```, always use ```$PATH``` to refer to the original system path. This will make the code creating the new path compatible with any machine running Bash, regardless of the number or order of the system directories.
 
->   \>\> ```export PATH=/full/path/to/scripts:/full/path/to/more/programs:$PATH```
+> \>\> ```export PATH=/full/path/to/scripts:/full/path/to/more/programs:$PATH```
+
+&nbsp;
+
+-------
+
+## ```CDPATH```
+
+### ```CDPATH``` does not have a default value. However, when set, the ```CDPATH``` environment variable extends the reach of the **```cd```** command to include the current directory **_plus all directories_** in ```CDPATH```. The rules for setting ```CDPATH``` are the same as those for ```PATH```.
+
+### For example, this sequence of cpmmands :
+
+> \>\> ```cd ~/data``` 
+
+> \>\> ```export CDPATH=/data;/data2```
+
+> \>\> ```cd cmip6``` 
+
+Will find switch to the first occerence of a ```cmip6``` directory after searching first in ```$HOME/data```, then in ```/data``` and finally in ```/data2```.
 

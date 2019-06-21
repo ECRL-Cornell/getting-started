@@ -10,7 +10,7 @@ ECRL tools are developed and run locally on Linux servers and Mac OS computers. 
 ### Learning these handy command line shortcuts before you start typing complex commands will make your life a whole lot easier. 
 
 ## **_Moving the cursor and editting text_**
-#### **NOTE : _```delete```d_** characters **_are not_** recoverable,
+#### **NOTE : _```deleted```_** characters **_are not_** recoverable,
 
 Keys | Action
 ------- | ------

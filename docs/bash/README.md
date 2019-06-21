@@ -19,6 +19,7 @@
 ### [Handy shortcut keys and special characters](keysetc.md)
 ### [Managing directories and files](dirfiles.md)
 ### [Searching the directory system](find.md)
+### [Working with text files](textfiles.md)
 ### [Using environment variables](envars.md)
 ### [Write your own Bash scripts](scripting.md)
 &nbsp;
