@@ -27,9 +27,11 @@ Keys | Action
 Keys | Action
 ------- | ------
 **```Ctrl K```** | Cut from from cursor to end of current line.
-**```Ctrl U```** | Cut from beginning of current line to the cursor. Be careful, if at end of line, cuts the entire line.
-**```Ctrl W```** | Cut the word befroe the cursor.
+**```Ctrl U```** | Cut from beginning of current line to the cursor.
+**```Ctrl W```** | Cut the word before the cursor.
 **```Ctrl Y```** | Paste previous cut string at cursor position.
+
+#### **_Be carefuli when using ```Ctrl U``` at the end of a line because it iwll cut the entire line._**
 
 #### **_Linux and Mac OS use different key combinations for some shortcuts. On a Mac, the equivalent of the Linux ```Alt``` key is the ```option``` key. However, clicking ```option``` along with **_ANY character key_** will insert a special character into the string. In general ```Esc``` can be used in place of ``Alt`` on Macs_**.
 

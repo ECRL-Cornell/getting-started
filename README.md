@@ -22,7 +22,7 @@
 
 ### Pick your editor and learn it well with the help of [**_these handy guides_**](docs/editors/READ.me).
 
-### With multiple people working together on most projects, a managed source code reository is critical. All of ECRL's source code repositries use the GIT version control system. [**_Using Git_**](docs/git.md) will get you started and point you to more details.
+### With multiple people working together on most projects, a managed source code reository is critical. All of ECRL's source code repositries use the GIT version control system. [**_Using Git_**](./docs/git.md) will get you started and point you to more details.
 
 &nbsp;
 
@@ -32,6 +32,6 @@
 ### [**_ECRL Confluence Wiki_**](https://cuecrl.atlassian.net/wiki/spaces/ECRL/overview)
 ### [**_ECRL Twitter page_**](https://twitter.com/ECRL_Cornell)
 ### [**_ECRL Facebook page_**]()
-### [**_ECRL Instagram page_**]()
+### [**_ECRL Instagram page_**](https://www.instagram.com/ECRL_Cornell)
 ### [**_ECRL YouTube channel_**](https://www.youtube.com/channel/UCH3nqSShD1SXotnp00HXhUw)
 ### [**_ECRL Web Site_**](http://ecrl.eas.cornell.edu)

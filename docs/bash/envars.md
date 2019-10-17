@@ -1,4 +1,4 @@
-# Bash Shell Envrionment Variables
+# BASH Shell Envrionment Variables
 
 ### The Bash shell uses environment variables to persist important information from one session to another. 
 

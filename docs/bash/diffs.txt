@@ -1,0 +1,307 @@
+diff --git a/README.md b/README.md
+index 21b5e03..d4cecdb 100644
+--- a/README.md
++++ b/README.md
+@@ -1 +1,37 @@
+-# getting-started
++# Emergent Climate Risks Lab @ Cornell University
++## _Software Development_
++
++### Practical guildelines for software development including introductory documentation for important tools such as bash, text editors, Python and the Anaconda package manager for users of Linux or Mac OS operating systems.
++
++&nbsp;
++
++## _Bash command line and shell_
++
++-------
++
++### Efficient use and development of software for Atmospheric Science requires a basic knowledge of [GNU Bash commands and scripting tools](docs/bash/readme.md)  for developing project code and controlling software execution.
++
++&nbsp;
++
++-------
++## _Programming_
++
++### Python has become the primary programming language used to develop Atmospheric Science applications. Our [**_Dive into Python_**](docs/python.md) will help you get started with (or get better at) writing efficient Python software. Of course, common coding guidelines and best practices for shared code are in there too.
++
++### ECRL uses the open source [**_Anaconda Package Manager_**](https://www.anaconda.com/distribution/) to simplify creation and managemnt of Python environments. The "wrapper scripts" in [**_Anaconda tools_**](myanaconda/personaluse.md) will make it easier for individual developers to manage those environments on their personal computers.
++
++### Pick your editor and learn it well with the help of [**_these handy guides_**](docs/editors/READ.me).
++
++### With multiple people working together on most projects, a managed source code reository is critical. All of ECRL's source code repositries use the GIT version control system. [**_Using Git_**](docs/git.md) will get you started and point you to more details.
++
++&nbsp;
++
++-------
++## Follow ECRL in the real world
++
++### [**_ECRL Confluence Wiki_**](https://cuecrl.atlassian.net/wiki/spaces/ECRL/overview)
++### [**_ECRL Twitter page_**](https://twitter.com/ECRL_Cornell)
++### [**_ECRL Facebook page_**]()
++### [**_ECRL Instagram page_**]()
++### [**_ECRL YouTube channel_**](https://www.youtube.com/channel/UCH3nqSShD1SXotnp00HXhUw)
++### [**_ECRL Web Site_**](http://ecrl.eas.cornell.edu)
+diff --git a/docs/bash/README.md b/docs/bash/README.md
+index 3e973bf..42b980c 100644
+--- a/docs/bash/README.md
++++ b/docs/bash/README.md
+@@ -19,6 +19,7 @@
+ ### [Handy shortcut keys and special characters](keysetc.md)
+ ### [Managing directories and files](dirfiles.md)
+ ### [Searching the directory system](find.md)
++### [Working with text files](textfiles.md)
+ ### [Using environment variables](envars.md)
+ ### [Write your own Bash scripts](scripting.md)
+ &nbsp;
+diff --git a/docs/bash/dirfiles.md b/docs/bash/dirfiles.md
+index 69bb6bd..4751d49 100644
+--- a/docs/bash/dirfiles.md
++++ b/docs/bash/dirfiles.md
+@@ -1,4 +1,4 @@
+-# Working with directories and files in a Bash.
++# Working with directories and files in BASH.
+ 
+ ECRL tools are developed and run locally on servers and Mac OS computers. All of these computers are based on a version of Linux that uses the Bourne Again Shell (BASH). So a basic knowledge of shell commands for managing directories and files is important. 
+ 
+@@ -11,7 +11,7 @@ ECRL tools are developed and run locally on servers and Mac OS computers. All of
+ ### For example, go to the ```pyhome``` sub-directory of the current duirectory.
+ >   \>\> ```cd pyhome``` &nbsp; 
+ 
+-### ```$HOME```  is an environment variable that contains the path to your home driectory.
++### ```$HOME```  is an environment variable that contains the path to your home driectory. For more about environment variables read ["Bash Shell Environment Variables"](./envars.md).
+ 
+ >   \>\> ```cd $HOME\code\myproject``` &nbsp; full path to the &nbsp;```myproject```&nbsp; directory in your home directory.
+ 
+@@ -29,17 +29,18 @@ ECRL tools are developed and run locally on servers and Mac OS computers. All of
+ >   \>\> ```cd``` &nbsp; &nbsp; _without any arguments is the easiest way to get to your home directory_.
+ 
+ ### ```..``` can be used to move one directory up in the tree or jump among sub-directories.
+-#### For these examples, the ```code``` directory in $HOME has 2 sub-direcories named ```project1``` and ```project2```
++#### For these examples, the ```code``` directory in ```$HOME``` has 2 sub-direcories named ```project1``` and ```project2```
+ >   \>\> ```cd ~\code\project1```
+ 
+ >   \>\> ```cd ../project2``` &nbsp; &nbsp; _will move you to the ```project2``` sub-directory of &nbsp;```~/code```_.
+ 
+ >   \>\> ```cd ..``` &nbsp; &nbsp; _will move you up to the &nbsp;```~/code``` directory_.
+ 
++### The ```CDPATH``` environment variable can be used to extend the reach fo the cd command. See [Using CDPATH](./envars.md#cdpath) for more information.
+ 
+ ### _**WARNING**_ typing &nbsp;**_```man cd```_**&nbsp; in the command line will display very limited (and ultimately useless) information for all 100+ built-in Linux commands.
+ 
+-### **_For additional **```cd```** documentation read these [cd docs online](https://ss64.com/bash/cd.html)_**
++### **_For additional **```cd```** documentation read the [cd docs online](https://ss64.com/bash/cd.html)_**
+ 
+ &nbsp;
+ 
+@@ -92,14 +93,15 @@ ECRL tools are developed and run locally on servers and Mac OS computers. All of
+ Column | Description
+ ------ | ------
+ 2 | 1 for files or number of items in a directory
+-3 | thw owner (for ECRL, their netid)
+-4 | a group with special access (in this case "ECRL Cornell")
++3 | the owner (for ECRL, the owner's netid)
++4 | a group with special access ("ECRL Cornell" in the example above)
+ 5 | the actual size of the item in bytes
+ 6 | the date the item was last modified
+ 7 | the name of the item
+ 
++#### **```NOTE:```** On most machines at Cornell the group will be "CORNELL/Domain Users". This secures an item so that only users with a valid Cornell NetID will have access.
+ 
+-### **File or directory names beginning with a period (```.```) are hidden from &nbsp;```ls```&nbsp; by default.** Use the &nbsp;**_```-a```_**&nbsp; option to display those "hidden" files.
++### **File or directory names beginning with a ```.``` are hidden from &nbsp;```ls```&nbsp; by default.** Use the &nbsp;**_```-a```_**&nbsp; option to display those "_dot_" files.
+ 
+ > \>\> ```cd ~``` &nbsp; &nbsp; (go to your home directory)
+ 
+@@ -114,9 +116,9 @@ Column | Description
+     .bashrc             .spyder2          Documents
+     .conda              .ssh              Downloads
+ 
+-### The single period at the beginning in this listing is a reference to the current directory, while the double period is a reference to the parent directory. Everything else is an item in the current directory.
++### The single period at the top of the first column is a reference to the current directory. The double period below it is a reference to the parent directory. Everything else is an item in the current directory.
+ 
+-### **Use the ```-al``` options to add essential details to the listing.**
++### **Use the ```-al``` options to add essential details for the **_dot_** files to the listing.**
+ >  \>\> ```ls -al```
+ 
+     drwxr-xr-x@  91 netid  ECRL Users   3094 Apr  2 10:45 .
+@@ -163,41 +165,61 @@ Column | Description
+ 
+ > \>\> ```rmdir ecrl```
+ 
+-### **BEWARE : _if a directory is not empty, ```rmdir``` will remove all ot the files and directories that it contains._ Unlike using "Move to Trash" on a Mac, ```THIS CANNOT BE UNDONE !!```**
++### **Be Aware : _if a directory is not empty, ```rmdir``` will remove all ot the files and directories that it contains._ Unlike using "Move to Trash" on a Mac, _```THIS CANNOT BE UNDONE !!```_**
++
+ 
+ ### As a result, the example above also **PERMANENTLY** deleted the &nbsp;```ecrl/spring/2019```&nbsp; and &nbsp;```ecrl/spring```&nbsp; directories we created earlier along with **```every other file and directory```** that might have been in &nbsp;```ecrl```&nbsp;. So it is good practice to double check to make sure there is nothing you want in the entire directory tree **BEFORE** using &nbsp;```rmdir```.
+ 
+ &nbsp;
+ 
+-## **Use &nbsp;_```cp```_&nbsp; to copy a file or directory from one directory to another.**
++## **Use &nbsp;_```cp```_&nbsp; to copy a file or directory from one place to another.**
+ -------
+ ### Copy a file from one directory to another directory.
+-#### Copy the file named &nbsp;```download_cmip5_file.py```&nbsp; from your development script directory to a production script directory.
++#### Copy a file from the current directory to a another directory.
++> \>\> ```cp 2019-sprinp-avg-precip.jpg /data/draught/maps```
++
++#### Copy a file from your development script directory to a production script directory.
+ > \>\> ```cp ~/dev/scripts/download_cmip5_file.py /builds/scripts```
+ 
++### Copy a directory and all of it's contents to another directory.
++> \>\> ```cp -r ~/code/draught /cron/python2.7```
++
+ &nbsp;
+ 
+ ## **Use &nbsp;_```mv```_&nbsp; to move a file or directory from one directory to another.**
+ -------
+ ### Move a data file from a download diectory to a permenanet directory
+-> \>\> ```mv ~/downloads/whatever.nc /data/cmip5/.....```
++> \>\> ```mv ~/data/whatever.nc /data/cmip5```
++
++### Rename a file in place.
++> \>\> ```mv any-file-name.py a-differnt-file-name.py```
++
++&nbsp;
++
++## **Use &nbsp;_```rm```_&nbsp; to remove (delete) a file.**
++-----
++> \>\> ```mv any-file-name.py```
++### **Be Aware : &nbsp;_```THIS CANNOT BE UNDONE !!```_**
+ 
+ &nbsp;
+ 
+ ## **Use &nbsp;_```cat```_&nbsp; to print the contents of a file to the terminal.**
+ -------
+-### **BE CAREFUL : Only use this on text or text-like files.** Using &nbsp;```cat```&nbsp; on binary files will send garbage to the terminal, some of which may be interpreted as executable commands. Rare, worst case potentital is to crash your system. 
+ 
+ > \>\> ```cat 2019-82750-44000-Anthracnose-Risk.json ```
+ 
+ > \>\>{"name":"anthrac","dates":{"seasonStart":[2019,3,1],"fcastEnd":[2019,5,14],"fcastStart":[2019,5,9],"lastValid":[2019,5,14]},"location":{"lon":-82.75,"lat":44.0},"data":[0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}
+ 
++### **BE CAREFUL : Only use ```cat``` on text or text-like files.** Using &nbsp;```cat```&nbsp; on binary files will send garbage to the terminal, some of which may be interpreted as executable commands. Potentital worst case scenarios are to freeze your session or crash your system. 
++
+ &nbsp;
+ 
+-## **Use &nbsp;_```touch```_&nbsp; to create an empty file.**
++## **Use &nbsp;_```touch```_&nbsp; to create a new empty file.**
+ -------
+ > \>\> ```touch fillmeuplater.txt```
+ 
++### _```touch```_&nbsp; may also  be used update the date/time stamp of an existing file or directory.
++
+ &nbsp;
+ 
+ ## **Use &nbsp;_```chmod```_&nbsp; and &nbsp;_```ls```_&nbsp; to manage file and directory permissions.**
+@@ -226,5 +248,35 @@ Column | Description
+ 
+ ### **_For complete documentation of the ```chmod``` command use ```man chmod``` or read the [chmod docs online](https://ss64.com/bash/chmod.html)._**
+ 
++&nbsp;
++
++## **Use &nbsp;_```chgrp```_&nbsp; and &nbsp;_```ls```_&nbsp; to manage file and directory group privileges.**
++### **_YOU_ must either be the owner or have root priviliege to do this.**
++-------
++### **Use  ```ls -l```   to show current group and permissions**
++
++    drwxrwxr-x    11 netid  CORNELL\Domain Users  952 Apr  1 17:17 code
++
++### **Change group to "ERCL Users"**
++
++> \>\> ```chgrp "ECRL Users"``` code
++
++> \>\> ```ls -l```
++
++    drwxrwxr-x  11 netid  ECRL Users  952 May  9 12:41 code
++
++### The result is that members of the group "CORNELL\Domain Users" no longer have write access to the ```code``` directory unless they are also members of "ERCL Users".
++
++### **BUT** only the group of the directory was changed. Since everyone can still ```cd``` to the ```code``` directory, members of the "CORNELL\Domain Users" group may still change any file in ```code``` that still "CORNELL\Domain Users" as it's group.
++
++### If the intent is to also change the group for all content of a directory, use the ```-R``` option to propagte the new group recursively throughout the directory.
++
++> \>\> ```chgrp -R "ECRL Users" code```
++
++### Now only the owner and members of the "ECRL Users" group have write access to the ```code``` directory and all of it's content.
++
++&nbsp;
++
++-------
+ <div align=center>&copy; 2019 Rick Moore</div> 
+ 
+diff --git a/docs/bash/envars.md b/docs/bash/envars.md
+index 711c7c3..3886a6e 100644
+--- a/docs/bash/envars.md
++++ b/docs/bash/envars.md
+@@ -2,7 +2,9 @@
+ 
+ ### The Bash shell uses environment variables to persist important information from one session to another. 
+ 
+-## Here are some foe the more useful environment variables set by the shell each time you log in.
++### **Everything documented here works the same in both the Linux and Mac OS operating systems.**
++
++## Here are some of the more useful environment variables set by the shell each time you log in.
+ 
+ 
+ | Variable | Value |
+@@ -11,8 +13,9 @@
+ | ```PATH``` | a list of all directories in the current full path |
+ | ```PWD``` | full path to the  current directory (```P```resent ```W```orking ```D```irectory) |
+ | ```USER``` and ```LOGNAME``` | the login ID of the curent user (```YOU !```) |
+-| ```SHELL``` | the name of the curreny
+-| ```LANG``` | the language used in the shell, usually **_en_US.UTF-8_** |
++| ```SHELL``` | the name of the curreny |
++| ```LANG``` | the language used in the shell, usually |**_en_US.UTF-8_** |
++| ```CDPATH``` | not set by default, see [Using CDPATH](#using-cdpath) |
+ 
+ ### **_```DO NOT EVER CHANGE```_ ```the values of HOME, PWD, USER, LOGNAME, SHELL or LANG !!```** The shell uses them extensively and relies on their values being correct as set by the operating system. 
+ 
+@@ -58,5 +61,23 @@
+ 
+ ### When setting a new value for ```PATH```, always use ```$PATH``` to refer to the original system path. This will make the code creating the new path compatible with any machine running Bash, regardless of the number or order of the system directories.
+ 
+->   \>\> ```export PATH=/full/path/to/scripts:/full/path/to/more/programs:$PATH```
++> \>\> ```export PATH=/full/path/to/scripts:/full/path/to/more/programs:$PATH```
++
++&nbsp;
++
++-------
++
++## ```CDPATH```
++
++### ```CDPATH``` does not have a default value. However, when set, the ```CDPATH``` environment variable extends the reach of the **```cd```** command to include the current directory **_plus all directories_** in ```CDPATH```. The rules for setting ```CDPATH``` are the same as those for ```PATH```.
++
++### For example, this sequence of cpmmands :
++
++> \>\> ```cd ~/data``` 
++
++> \>\> ```export CDPATH=/data;/data2```
++
++> \>\> ```cd cmip6``` 
++
++Will find switch to the first occerence of a ```cmip6``` directory after searching first in ```$HOME/data```, then in ```/data``` and finally in ```/data2```.
+ 
+diff --git a/docs/bash/find.md b/docs/bash/find.md
+index 74aab50..5ff77c2 100644
+--- a/docs/bash/find.md
++++ b/docs/bash/find.md
+@@ -1,5 +1,7 @@
+ # **How to search for content in a directory**
+ 
++### **Everything documented here works the same in both the Linux and Mac OS operating systems.**
++
+ ### The ```find``` command will search a directory or list of directories for items that match a name or pattern.
+ 
+ | Option | Argument | Action |
+diff --git a/docs/bash/keysetc.md b/docs/bash/keysetc.md
+index 418ac5f..83653dd 100644
+--- a/docs/bash/keysetc.md
++++ b/docs/bash/keysetc.md
+@@ -10,7 +10,7 @@ ECRL tools are developed and run locally on Linux servers and Mac OS computers.
+ ### Learning these handy command line shortcuts before you start typing complex commands will make your life a whole lot easier. 
+ 
+ ## **_Moving the cursor and editting text_**
+-#### **NOTE : _```delete```d_** characters **_are not_** recoverable,
++#### **NOTE : _```deleted```_** characters **_are not_** recoverable,
+ 
+ Keys | Action
+ ------- | ------
